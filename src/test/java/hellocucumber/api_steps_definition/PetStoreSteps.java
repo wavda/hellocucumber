@@ -18,16 +18,14 @@ public class PetStoreSteps {
     String username;
     Response response;
     RequestSpecification request;
+    RestAssuredConfig config = RestAssuredConfig.config().httpClient(HttpClientConfig.httpClientConfig()
+            .setParam("http.connection.timeout", 30000));
 
     @Given("I want to create new user")
     public void create_new_user() {
         username = String.valueOf(System.currentTimeMillis());
         RestAssured.baseURI = baseUrl;
-        RestAssuredConfig config = RestAssuredConfig
-                .config()
-                .httpClient(HttpClientConfig
-                        .httpClientConfig()
-                        .setParam("http.connection.timeout", 30000));
+
         request = RestAssured.given().config(config);
         request.header("Content-type", "application/json");
 
@@ -48,11 +46,6 @@ public class PetStoreSteps {
     @When("verify user {string} in database")
     public void get_user_by_username(String status) {
         RestAssured.baseURI = baseUrl;
-        RestAssuredConfig config = RestAssuredConfig
-                .config()
-                .httpClient(HttpClientConfig
-                        .httpClientConfig()
-                        .setParam("http.connection.timeout", 30000));
         request = RestAssured.given().config(config);
         request.header("Content-type", "application/json");
 
@@ -68,11 +61,6 @@ public class PetStoreSteps {
     @When("I login as user")
     public void login_as_user() {
         RestAssured.baseURI = baseUrl;
-        RestAssuredConfig config = RestAssuredConfig
-                .config()
-                .httpClient(HttpClientConfig
-                        .httpClientConfig()
-                        .setParam("http.connection.timeout", 30000));
         request = RestAssured.given().config(config);
         request.header("Content-type", "application/json");
 
@@ -88,11 +76,6 @@ public class PetStoreSteps {
     @When("I delete user")
     public void delete_user() {
         RestAssured.baseURI = baseUrl;
-        RestAssuredConfig config = RestAssuredConfig
-                .config()
-                .httpClient(HttpClientConfig
-                        .httpClientConfig()
-                        .setParam("http.connection.timeout", 30000));
         request = RestAssured.given().config(config);
         request.header("Content-type", "application/json");
 

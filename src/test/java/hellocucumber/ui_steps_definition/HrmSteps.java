@@ -11,14 +11,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.net.MalformedURLException;
 import java.time.Duration;
 
 public class HrmSteps {
-    private final WebDriver driver = new WebDriverFactory().createWebDriver();
-    private final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    private WebDriver driver;
+    private WebDriverWait wait;
 
     @Given("I am on the OrangeHRM login page")
-    public void I_visit_hrm() {
+    public void I_visit_hrm() throws MalformedURLException {
+        driver = new WebDriverFactory().createWebDriver();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
     }
 
